@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3 class="text-center">Contact List</h3>
+
+            </div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group has-info has-feedback">
+                    <label for="seacrh" class="col-sm-2 control-label">Search: </label>
+                    <div class="col-sm-5">
+                        <input type="text" name="search" ng-model="test" class="form-control">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>last Name</th>
+                            <th>Contact Number</th>
+                            <th>Contact Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="contact in contactList | filter:test">
+                            <td><span ng-hide="showMe($index)">{{contact.firstName}}</span>
+                                <input text="text" class="form-control input-sm" ng-model="contact.firstName" ng-show="showMe($index)"></td>
+                            <td><span ng-hide="showMe($index)">{{contact.lastName}}</span>
+                                <input text="text" class="form-control input-sm" ng-model="contact.lastName" ng-show="showMe($index)"></td>
+                            <td><span ng-hide="showMe($index)">{{contact.contactNumber}}</span>
+                                <input text="number" class="form-control input-sm" ng-model="contact.contactNumber" ng-show="showMe($index)"></td>
+                            <td><span ng-hide="showMe($index)">{{contact.contactEmail}}</span>
+                                <input text="email" class="form-control input-sm" ng-model="contact.contactEmail" ng-show="showMe($index)"></td>
+                            <td><a href="#" ng-click="removeItem()"><span class="glyphicon glyphicon-trash"></span>&nbsp;</a>/
+                                <a href="#" ng-click="change()" ng-hide="showMe($index)"> <span class="glyphicon glyphicon-edit"></span></a>
+                                </a><a href="#" ng-click="save()" ng-show="showMe($index)">&nbsp;<span class="glyphicon glyphicon-ok"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <ng-form name="contactForm" class="form-inline">
+                <div>
+                    <div class="form-group col-md-6">
+                        <span class="col-md-3">First Name</span>
+                        <input type="text" class="form-control col-md-3" no-specialchar ng-model="newFirstName" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <span class="col-md-3">Last Name</span>
+                        <input type="text" class="form-control col-md-3" no-specialchar ng-model="newLastName" required>
+                    </div>
+                </div>
+                <div style="margin-top:10px">
+                    <div class="form-group col-md-6" style="margin-top:10px">
+                        <span class="col-md-3">Contact Number</span>
+                        <input type="text" class="form-control" numeric-only ng-model="newContactNumber" minlength="1" maxlength="10" required>
+                    </div>
+                    <div class="form-group col-md-6" style="margin-top:10px">
+                        <span class="col-md-3">Contact Email</span>
+                        <input type="email" class="form-control" ng-model="newContactEmail" required>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary btn-sm" value="Add" ng-click="addItem()">
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+</div>
